@@ -1,5 +1,5 @@
 
-export default function HabitDisplay({
+export default function HabitDisplay ({
   habit
 }: {
   habit: string

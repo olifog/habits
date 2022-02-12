@@ -1,4 +1,4 @@
-import { DynamoDBClient, BatchExecuteStatementCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'
 
 const client = new DynamoDBClient({
   region: 'eu-west-2',

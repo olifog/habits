@@ -1,18 +1,16 @@
-import HabitDisplay from "~/components/habit";
-import { authenticator } from "~/services/auth.server";
-import { LoaderFunction } from "@remix-run/server-runtime";
-import { getSession } from "~/services/session.server";
-import { json, useLoaderData } from "remix";
-import { User } from "~/services/auth.server";
+import HabitDisplay from '~/components/habit'
+import { authenticator, User } from '~/services/auth.server'
+import { LoaderFunction } from '@remix-run/server-runtime'
+import { json, useLoaderData } from 'remix'
 
-export let loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
-    failureRedirect: "/auth/github",
-  });
+    failureRedirect: '/auth/github'
+  })
   return json<User>(user)
-};
+}
 
-export default function Index() {
+export default function Index () {
   const user = useLoaderData<User>()
 
   return (
@@ -28,5 +26,5 @@ export default function Index() {
         <HabitDisplay habit="Read" />
       </div>
     </div>
-  );
+  )
 }
