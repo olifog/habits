@@ -1,5 +1,5 @@
 [build]
-  command = "remix build"
+  command = "tailwindcss -m -i ./styles/app.css -o app/styles/app.css && remix build"
   functions = "netlify/functions"
   publish = "public"
 

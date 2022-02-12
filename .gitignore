@@ -1,6 +1,6 @@
 node_modules
 /.cache
-/netlify/functions/server/build
 /public/build
 /.netlify
 app/styles/app.css
+/netlify/functions/server/build/
