@@ -8,12 +8,6 @@ import fromDynamo from '~/models/Habit/fromdynamo'
 import client from '~/utils/dynamodb'
 
 interface LoaderData {
-  user: {
-    githubid: string,
-    displayname: string,
-    // eslint-disable-next-line camelcase
-    avatar_url: string
-  },
   habits: Habit[]
 }
 
@@ -34,13 +28,12 @@ export const loader: LoaderFunction = async ({ request }) => {
   const habits = data.Items?.map((item) => fromDynamo(item))
 
   return json<LoaderData>({
-    user: user,
     habits: habits || []
   })
 }
 
 export default function Index () {
-  const { user, habits } = useLoaderData<LoaderData>()
+  const habits = useLoaderData<LoaderData>().habits
 
   const updateDB = async (habit: Habit) => {
     await fetch(`/habit/${habit.habitid}`, {
@@ -52,9 +45,6 @@ export default function Index () {
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
-      <span className="flex justify-center">
-        Hi, {user.displayname}!
-      </span>
       <div className="flex flex-wrap max-w-md justify-center">
         {
           habits.map((habit) => (
