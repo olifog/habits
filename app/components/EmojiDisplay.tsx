@@ -1,10 +1,11 @@
 import { IEmojiData } from 'emoji-picker-react'
 import { useState, useEffect, useRef } from 'react'
+import { useEmojiPicker } from './EmojiPicker'
 
 export const EmojiDisplay = ({ emoji, update }: {emoji: string, update: (updates: {}) => void}) => {
   const [open, setOpen] = useState(false)
   const [chosenEmoji, setChosenEmoji] = useState(emoji)
-  const [EmojiPicker, setEmojiPicker] = useState<any>(() => (<></>))
+  const EmojiPicker = useEmojiPicker()
   const wrapperRef = useRef<any>(null)
   const displayRef = useRef<any>(null)
 
@@ -20,19 +21,10 @@ export const EmojiDisplay = ({ emoji, update }: {emoji: string, update: (updates
     }
   }, [wrapperRef])
 
-  useEffect(() => {
-    (window as any).global = window
-    import('emoji-picker-react').then((_module) => {
-      setEmojiPicker(_module.default)
-    })
-  }, [])
-
-  const onEmojiClick = async (event: React.MouseEvent<Element, MouseEvent>, emojiObject: IEmojiData) => {
+  const onEmojiClick = (event: React.MouseEvent<Element, MouseEvent>, emojiObject: IEmojiData) => {
     setChosenEmoji(emojiObject.emoji)
-    await update({ emoji: emojiObject.emoji })
+    update({ emoji: emojiObject.emoji })
   }
-
-  const DisplayEmojiPicker = EmojiPicker.default // weird workaround, double default?
 
   return (
     <div className='relative'>
@@ -41,7 +33,7 @@ export const EmojiDisplay = ({ emoji, update }: {emoji: string, update: (updates
       </div>
       {open && (
         <div className='absolute' ref={wrapperRef}>
-          <DisplayEmojiPicker onEmojiClick={onEmojiClick} />
+          <EmojiPicker onEmojiClick={onEmojiClick} />
         </div>
       )}
     </div>

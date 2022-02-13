@@ -45,7 +45,7 @@ export default function HabitDisplay ({ habit, updateDB }: {habit: Habit, update
         </div>
         <div className="h-full flex flex-col place-content-center">
           <div className="flex justify-center">
-            <span className="text-white font-bold">{habit.name}</span>
+            <span className="text-white font-bold px-2 text-center">{habit.name}</span>
           </div>
         </div>
       </div>
