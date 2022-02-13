@@ -7,6 +7,7 @@ import { UpdateItemCommand, UpdateItemCommandInput } from '@aws-sdk/client-dynam
 export interface User {
   githubid: string,
   displayname: string,
+  // eslint-disable-next-line camelcase
   avatar_url: string
 }
 

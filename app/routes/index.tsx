@@ -11,6 +11,7 @@ interface LoaderData {
   user: {
     githubid: string,
     displayname: string,
+    // eslint-disable-next-line camelcase
     avatar_url: string
   },
   habits: Habit[]
