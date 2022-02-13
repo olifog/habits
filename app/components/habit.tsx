@@ -34,7 +34,7 @@ export default function HabitDisplay ({ habit, updateDB }: {habit: Habit, update
       className={`relative w-48 h-48 rounded-[3rem] shadow-2xl m-2 cursor-pointer bg-gradient-to-br ${done ? 'from-green-600 to-green-700' : 'from-orange-500 to-orange-600'}`}
       onClick={handleClick}
     >
-      <Link to={`/habit/${habit.habitid}`} prefetch="intent" className="absolute top-3 right-3">
+      <Link to={`/habit/${habit.habitid}`} prefetch="render" className="absolute top-3 right-3">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
         </svg>
