@@ -24,7 +24,11 @@ const fromDynamo = (habitResponse: Item): Habit => {
 
   if (today > lastChecked) {
     habit.history.push(habit.status)
-    if (habit.status) { habit.streak++ }
+    if (habit.status) {
+      habit.streak++
+    } else {
+      habit.streak = 0
+    }
     habit.longestStreak = Math.max(habit.longestStreak, habit.streak)
     habit.status = false
     const diff = today - lastChecked - 1 // minus extra one for the initial status
